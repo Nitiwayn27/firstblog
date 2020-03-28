@@ -1,0 +1,85 @@
+
+{% extends 'blog-1.html' %}
+
+{% block title %} {{article.article_title}} {% endblock %}
+{% load static %}
+{% block content_top %} {{article.article_title}} {% endblock %}
+{% block content %} {{article.article_text}} 
+
+
+{% endblock %}
+
+
+
+{% block comments %} 
+{% if latest_comments_list %}
+
+	{% for c in latest_comments_list %}
+        <li>
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-3 person-img">
+                    <img src="{% static 'images/person.jpg' %}" alt="">
+                </div>
+                <div class="col-md-10 col-sm-10 col-xs-9 comment-content">
+                    <div class="name">{{c.author_name}}</div> 
+                    <p>{{c.comment_text}}</p>
+                    <a href="#"><i class="fa fa-reply" aria-hidden="true"></i>Reply</a>
+                </div>
+            </div>
+        </li>
+
+	{% endfor %}	
+{% endif %}
+{% endblock %}
+
+
+{% block pub_date %} <em> {{article.pub_date}} </em> {% endblock %}
+
+
+
+
+
+
+
+{% block posts1 %}
+
+    {% if latest_articles_list %}
+
+        {% for a in latest_articles_list %}
+            <li>
+                <a href="{% url 'articles:blog' a.id %}">
+                    <div class="info">Game Info <span>{{a.pub_date}}</span></div>
+                    <p class="little-text">{{a.article_text}}</p>
+                </a>
+            </li>
+
+        {% endfor %}    
+
+    {% else %}
+        Статьи не найдены
+    {% endif %}
+{% endblock %}  
+
+
+
+
+
+
+{% block newblog %}
+
+    {% if latest_articles_list %}
+
+        {% for a in latest_articles_list %}
+            <li>
+                <a href="{% url 'articles:blog' a.id %}">
+                    <div class="info">Game Info <span>{{a.pub_date}}</span></div>
+                    <p class="little-text">{{a.article_title}}</p>
+                </a>
+            </li>
+        {% endfor %}    
+
+    {% else %}
+        Статьи не найдены
+    {% endif %}
+{% endblock %}  
+

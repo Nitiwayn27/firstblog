@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block about_me %} Let me introduce myself. My name is Nikita. I am eighteen. I am a student of the Moscow University.
+
+I am easy-going, cheerful and responsive. I love to work and doing some interesting things in programm sphere. 
+
+In addition, know English well. So, I can speak English, reading english books such as programm books.
+
+Now I'm trying to studying Django Framework and PosgreSQL.
+
+I'm begginner in this sphere and I want to do it well in the future :)
+
+Thanks for your attention! {% endblock %}
+{% block name %} Nikita {% endblock %}
+{% block birthday %} 27/06/2001 {% endblock %}
+{% block 1st_service %}Now I'm studying Django Framework. I want to get skills in this sphere and practice it.{% endblock %}
+{% block 2nd_service %} Also i'm trying to study PosgreSQL{% endblock %}
+
+{% block main_name %} Nikita {% endblock%}
+{% block main_job %} Django/Python Junior {% endblock %}
+{% block job %} Django + PostgreSQL/ <br>
+<br> Python {% endblock %}
+{% block email %} swat01270601@mail.ru {% endblock %}
+
+{% block university %} Московский
+<br><br> университет им. С.Ю Витте {% endblock %}
+
+
+{% block blog %}
+
+	{% if latest_articles_list %}
+
+		{% for a in latest_articles_list %}
+            <div class="cbp-item">
+ 
+                    <div class="blog-img">
+                        <img src="{% static 'images/blogs/blog-6.jpg' %}" alt="">
+                    </div>
+                    <div class="blog-box-info">
+                        <span class="category">General</span> 
+                        <h2 class="title"><a href="{% url 'articles:blog' a.id %}">{{a.article_title}}</a></h2>
+                        <p class="little-text">{{a.article_text}}</p>
+                        <span class="date">{{a.pub_date}}</span>
+                    </div>
+                </a>
+            </div>
+		{% endfor %}	
+
+	{% else %}
+		Статьи не найдены
+	{% endif %}
+{% endblock %}	
